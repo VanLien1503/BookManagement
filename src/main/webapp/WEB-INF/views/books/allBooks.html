@@ -29,9 +29,9 @@
                 <td th:text="${b.name}"></td>
                 <td th:text="${b.athor}"></td>
                 <td th:text="${b.price}"></td>
-                <td th:text="${b.category.name}"></td>
+                <td th:text="${b.category.nameCategory}"></td>
                 <td>
-                    <a th:href="@{/books/edit/__${.id}b.id__}">Edit</a><br/>
+                    <a th:href="@{/books/edit/__${b.id}__}">Edit</a><br/>
                     <a th:href="@{/books/delete/__${b.id}__}">Delete</a><br/>
                 </td>
             </tr>

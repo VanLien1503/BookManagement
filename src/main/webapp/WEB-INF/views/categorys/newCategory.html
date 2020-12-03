@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Category</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#newCategory').submit(function (event) {
+                var nameCategory = $('#nameCategory').val();
+                var json = {"nameCategory": nameCategory};
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    type: "POST",
+                    data: JSON.stringify(json),
+                    url: "/category/newCategory",
+                    success: function (category) {
+                        var respContent = "";
+                        // respContent += "<span class='success'>Category new : [";
+                        // respContent += category.nameCategory + "]</span>"
+                        $("#categoryFromResponse").html(respContent);
+                    }
+                });
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="container">
+    <h1>Create new category</h1>
+    <div>
+        <p>Here you can create new CATEGORY:</p>
+        <div id="categoryFromResponse"></div>
+    </div>
+
+    <form id="newCategory" th:object="${category}">
+        <table>
+            <tbody>
+            <tr>
+                <td>NameCATEGORY:</td>
+                <td><input th:field="*{nameCategory}"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Create"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <a th:href="@{/books}">List</a>
+</div>
+</body>
+</html>

@@ -31,6 +31,7 @@
                     }
                 });
                 event.preventDefault();
+                console.log(json);
             });
         });
     </script>
@@ -61,7 +62,7 @@
                 <td>Category:</td>
                 <td>
                     <select th:field="*{category}">
-                        <option th:each="p : ${categorys}" th:value="${p.id}" th:text="${p.name}"></option>
+                        <option th:each="p : ${categorys}" th:value="${p.id}" th:text="${p.nameCategory}"></option>
                     </select>
                 </td>
             </tr>

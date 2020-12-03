@@ -10,13 +10,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+    private String nameCategory;
 
     public Category() {
     }
 
-    public Category(String name) {
-        this.name = name;
+    public Category(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 
     public Integer getId() {
@@ -27,11 +27,11 @@ public class Category {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 }

@@ -20,12 +20,12 @@ public class BooksController {
 
 
     @ModelAttribute("categorys")
-    public Iterable<Category> provinces(){
+    public Iterable<Category> category(){
         return categoryService.findAll();
     }
 
     @RequestMapping(value = "/creat",method = RequestMethod.GET)
-    public ModelAndView createSmartphonePage(){
+    public ModelAndView createBookPage(){
         ModelAndView modelAndView = new ModelAndView("/books/newBook");
         modelAndView.addObject("books",new Books());
         return modelAndView;
@@ -35,6 +35,8 @@ public class BooksController {
     consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Books creatBook(@RequestBody Books books){
+        Category category = categoryService.findById(Integer.valueOf(books.getCategory().getNameCategory()));
+        books.setCategory(category);
         return bookService.save(books);
     }
 
