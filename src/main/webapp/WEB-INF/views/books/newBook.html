@@ -6,12 +6,12 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#newSmartphoneForm').submit(function(event) {
-                var name = $('#nameBook').val();
+            $('#newBooks').submit(function(event) {
+                var nameBook = $('#nameBook').val();
                 var author = $('#author').val();
                 var price = $('#price').val();
                 var category = $('#category').val();
-                var json = { "name" : name, "author" : author, "price": price,"category":category};
+                var json = { "nameBook" : nameBook, "author" : author, "price": price,"category":category};
                 $.ajax({
                     headers: {
                         'Accept': 'application/json',
@@ -21,12 +21,12 @@
                     data: JSON.stringify(json),
                     url: "/books/creatNewBook",
                     success: function(books) {
-                        var respContent = "";
-                        respContent += "<span class='success'>new Books : [";
-                        respContent += books.name + " : ";
-                        respContent += books.author + " : " ;
-                        respContent += books.price + " : " ;
-                        respContent += books.category + "]</span>"
+                        var respContent = " done";
+                        // respContent += "<span class='success'>new Books : [";
+                        // respContent += books.nameBook + " : ";
+                        // respContent += books.author + " : " ;
+                        // respContent += books.price + " : " ;
+                        // respContent += books.category + "]</span>"
                         $("#booksResponse").html(respContent);
                     }
                 });
@@ -47,7 +47,7 @@
             <tbody>
             <tr>
                 <td>Name:</td>
-                <td><input th:field="*{name}" /></td>
+                <td><input th:field="*{nameBook}" /></td>
             </tr>
             <tr>
                 <td>Author:</td>

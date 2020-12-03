@@ -9,7 +9,7 @@ public class Books {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+    private String nameBook;
     private String author;
     private double price;
 
@@ -20,16 +20,11 @@ public class Books {
     public Books() {
     }
 
-    public Books(String name, String author, double price, Category category) {
-        this.name = name;
+    public Books(String nameBook, String author, double price, Category category) {
+        this.nameBook = nameBook;
         this.author = author;
         this.price = price;
         this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Books[id=%d, name='%s', author='%s' , Price='%s']", id, name, author,price);
     }
 
     public Integer getId() {
@@ -40,12 +35,12 @@ public class Books {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameBook() {
+        return nameBook;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameBook(String nameBook) {
+        this.nameBook = nameBook;
     }
 
     public String getAuthor() {
