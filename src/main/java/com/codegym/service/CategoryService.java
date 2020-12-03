@@ -7,5 +7,4 @@ public interface CategoryService {
     Category findById (Integer id);
     Category save (Category category);
     Category remove(Integer id);
-    Category findAllByNameCategory(String name);
 }

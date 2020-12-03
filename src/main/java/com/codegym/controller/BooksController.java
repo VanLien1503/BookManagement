@@ -35,8 +35,8 @@ public class BooksController {
     consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Books creatBook(@RequestBody Books books){
-        Category category = categoryService.findById(Integer.valueOf(books.getCategory().getNameCategory()));
-        books.setCategory(category);
+//        Category category = categoryService.findById(Integer.valueOf(books.getCategory().getNameCategory()));
+//        books.setCategory(category);
         return bookService.save(books);
     }
 

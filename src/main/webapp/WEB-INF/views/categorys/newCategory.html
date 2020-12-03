@@ -19,8 +19,8 @@
                     url: "/category/newCategory",
                     success: function (category) {
                         var respContent = "";
-                        // respContent += "<span class='success'>Category new : [";
-                        // respContent += category.nameCategory + "]</span>"
+                        respContent += "<span style='color: red' class='success'>Category new : [";
+                        respContent += category.nameCategory +""+"<a href=\"/books/creat\">New Books</a>"+""+"]</span>"
                         $("#categoryFromResponse").html(respContent);
                     }
                 });
@@ -30,6 +30,7 @@
     </script>
 </head>
 <body>
+
 <div id="container">
     <h1>Create new category</h1>
     <div>

@@ -21,12 +21,12 @@
                     data: JSON.stringify(json),
                     url: "/books/creatNewBook",
                     success: function(books) {
-                        var respContent = " done";
-                        // respContent += "<span class='success'>new Books : [";
-                        // respContent += books.nameBook + " : ";
-                        // respContent += books.author + " : " ;
-                        // respContent += books.price + " : " ;
-                        // respContent += books.category + "]</span>"
+                        var respContent = "";
+                        respContent += "<span class='success'>new Books : [";
+                        respContent += books.nameBook + " : ";
+                        respContent += books.author + " : " ;
+                        respContent += books.price + " : " ;
+                        respContent += books.category +""+"<a href=\"/category/creat\">New Category</a>"+""+"]</span>"
                         $("#booksResponse").html(respContent);
                     }
                 });
@@ -62,7 +62,7 @@
                 <td>Category:</td>
                 <td>
                     <select th:field="*{category}">
-                        <option th:each="p : ${categorys}" th:value="${p.id}" th:text="${p.nameCategory}"></option>
+                        <option th:each="p : ${categorys}" th:value="${p.nameCategory}" th:text="${p.id}"></option>
                     </select>
                 </td>
             </tr>
