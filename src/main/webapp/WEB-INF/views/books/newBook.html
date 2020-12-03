@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new Smartphone</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#newSmartphoneForm').submit(function(event) {
+                var name = $('#nameBook').val();
+                var author = $('#author').val();
+                var price = $('#price').val();
+                var category = $('#category').val();
+                var json = { "name" : name, "author" : author, "price": price,"category":category};
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    type : "POST",
+                    data: JSON.stringify(json),
+                    url: "/books/creatNewBook",
+                    success: function(books) {
+                        var respContent = "";
+                        respContent += "<span class='success'>new Books : [";
+                        respContent += books.name + " : ";
+                        respContent += books.author + " : " ;
+                        respContent += books.price + " : " ;
+                        respContent += books.category + "]</span>"
+                        $("#booksResponse").html(respContent);
+                    }
+                });
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="container">
+    <h1>Create new Books</h1>
+    <div>
+        <p style="color:blue">Here you can create new Books:</p>
+        <div id="booksResponse"></div>
+    </div>
+    <form id="newBooks" th:object="${books}">
+        <table>
+            <tbody>
+            <tr>
+                <td>Name:</td>
+                <td><input th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>Author:</td>
+                <td><input th:field="*{author}" /></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input th:field="*{price}" /></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select th:field="*{category}">
+                        <option th:each="p : ${categorys}" th:value="${p.id}" th:text="${p.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Create" /></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <a th:href="@{/books}" style="color: red">List Books</a>
+</div>
+</body>
+</html>
