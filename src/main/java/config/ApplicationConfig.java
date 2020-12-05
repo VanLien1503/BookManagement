@@ -1,11 +1,9 @@
 package config;
 
 import com.codegym.formatter.CategoryFormatter;
-import com.codegym.model.Category;
 import com.codegym.service.BookService;
 import com.codegym.service.CategoryService;
 import com.codegym.service.impl.BooksServiceImpl;
-import com.codegym.service.impl.CategoryServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -45,6 +43,7 @@ import java.util.Properties;
 @EnableSpringDataWebSupport
 @ComponentScan("com.codegym")
 @EnableJpaRepositories("com.codegym.repository")
+
 public class ApplicationConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -60,7 +59,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views");
+        templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
@@ -135,7 +134,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
     @Bean
     public CategoryService categoryService(){
-        return new CategoryServiceImpl();
+        return new BooksServiceImpl.CategoryServiceImpl();
     }
     @Override
     public  void addFormatters(FormatterRegistry registry){

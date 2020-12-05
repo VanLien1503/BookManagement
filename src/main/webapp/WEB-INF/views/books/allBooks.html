@@ -8,7 +8,7 @@
 <body>
 <div id="container">
     <h1>All Smartphones</h1>
-    <a th:href="@{/books/create}">Create Books</a>
+    <a th:href="@{/books/creat}">Create Books</a>
     <div>
         <p>Here you can see a list of Books:</p>
         <div id="sPhoneFromResponse"></div>
@@ -24,21 +24,25 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="b : ${allBooks}">
+        <th:block th:each="book : ${allBooks}">
             <tr>
-                <td th:text="${b.name}"></td>
-                <td th:text="${b.athor}"></td>
-                <td th:text="${b.price}"></td>
-                <td th:text="${b.category.nameCategory}"></td>
+                <td th:text="${book.nameBook}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.category.nameCategory}"></td>
                 <td>
-                    <a th:href="@{/books/edit/__${b.id}__}">Edit</a><br/>
-                    <a th:href="@{/books/delete/__${b.id}__}">Delete</a><br/>
+                    <a th:href="@{/books/edit/__${book.id}__}">Edit</a><br/>
+                    <a th:href="@{/books/delete/__${book.id}__}">Delete</a><br/>
                 </td>
             </tr>
         </th:block>
         </tbody>
     </table>
-    <a th:href="@{/}">Home page</a>
+    <div>
+        <a th:href="@{'/books/viewBooks'(page=${allBooks.number - 1})}" th:if="${allBooks.hasPrevious()}">Previous</a>
+        <span th:text="${allBooks.number + 1}"></span>/<span th:text="${allBooks.totalPages}"></span>
+        <a th:href="@{'/books/viewBooks'(page=${allBooks.number + 1})}" th:if="${allBooks.hasNext()}">Next</a>
+    </div>
 </div>
 </body>
 </html>

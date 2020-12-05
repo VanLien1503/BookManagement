@@ -11,7 +11,10 @@
                 var author = $('#author').val();
                 var price = $('#price').val();
                 var category = $('#category').val();
-                var json = { "nameBook" : nameBook, "author" : author, "price": price,"category":category};
+                var json = { "nameBook" : nameBook, "author" : author, "price": price,"category":{
+                    "id":category,
+                       "nameCategory": ""
+                    }};
                 $.ajax({
                     headers: {
                         'Accept': 'application/json',
@@ -62,7 +65,7 @@
                 <td>Category:</td>
                 <td>
                     <select th:field="*{category}">
-                        <option th:each="p : ${categorys}" th:value="${p.nameCategory}" th:text="${p.id}"></option>
+                        <option th:each="p : ${categorys}" th:value="${p.id}" th:text="${p.nameCategory}"></option>
                     </select>
                 </td>
             </tr>
@@ -73,7 +76,7 @@
             </tbody>
         </table>
     </form>
-    <a th:href="@{/books}" style="color: red">List Books</a>
+    <a th:href="@{/books/viewBooks}" style="color: red">List Books</a>
 </div>
 </body>
 </html>
